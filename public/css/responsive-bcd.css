@@ -1,0 +1,45 @@
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+	.navbar-main {
+		display: block;
+	}
+	.navbar-header #navbar-brand1 {
+		display: block;
+	}
+	.navbar-header #navbar-brand2 {
+		display: none;
+	}
+	#wrap .navbar-main {
+		background-color: #e6e7e8;
+	}
+	.row-offcanvas {
+		position: relative;
+		padding: 50px 0;
+		-webkit-transition: all 0.25s ease-out;
+		-moz-transition: all 0.25s ease-out;
+		transition: all 0.25s ease-out;
+	}
+	.row-offcanvas-right
+	.sidebar-offcanvas {
+		right: -41.6%;
+	}
+
+	.row-offcanvas-left
+	.sidebar-offcanvas {
+		left: -41.6%;
+	}
+	.row-offcanvas-right.visible {
+		right: 41.6%;
+	}
+	.row-offcanvas-left.visible {
+		left: 41.6%;
+	}
+	.sidebar-offcanvas {
+		position: absolute;
+		top: 0;
+		width: 41.6%;
+	}
+	#sidebar {
+		padding-top:0;
+	}
+}

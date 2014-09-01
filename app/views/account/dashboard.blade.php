@@ -27,7 +27,7 @@
       <!-- Add special function for System Admin -->
       @if(Employee::where('username', e(Auth::user()->username))->pluck('position') === 2)
         <div class="col-lg-4 dashboard-options">
-          <a href="#">
+          <a href="{{ URL::route('system-records') }}">
             {{ HTML::image("img/add-record.png", "Manage System Records", array('class' => 'thumb')) }}
             <h4>Manage System Records</h4>
             <p>Add, edit, or delete records</p>

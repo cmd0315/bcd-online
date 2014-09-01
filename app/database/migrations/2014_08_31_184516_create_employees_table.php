@@ -17,6 +17,7 @@ class CreateEmployeesTable extends Migration {
 			$t->string('mobile', 15);
 			$t->string('department_id', 10);
 			$t->integer('position');
+			$t->softDeletes();
 		});
 	}
 

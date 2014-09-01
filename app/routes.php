@@ -1,5 +1,8 @@
 <?php
+//Route to home page
 Route::get('/', ['as' => 'home','uses' => 'HomeController@getIndex']);
+
+Route::resource('employees', 'EmployeesController');
 
 /*
 *
@@ -11,7 +14,32 @@ Route::group(array('before' => 'auth'), function(){
 	/ CSRF group
 	*/
 	Route::group(array('before' => 'csrf'), function(){
+		/*
+		/ Account Password (POST)
+		*/
+		Route::post('/change-password', array(
+			'as' => 'accounts.change-password-post',
+			'uses' => 'AccountsController@postChangePassword'
+		));
 
+	});
+
+	/*
+	*
+	* System Admin group
+	*
+	*/
+	Route::group(array('before' => 'role'), function() {
+
+		Route::group(array('prefix' => '/admin'), function() {
+			/*
+			/ System Records (GET)
+			*/
+			Route::get('/system-records', array(
+				'as' => 'system-records',
+				'uses' => 'HomeController@getSystemRecordsPage'
+			));
+		});
 	});
 
 	/*
@@ -19,7 +47,7 @@ Route::group(array('before' => 'auth'), function(){
 	*/
 	Route::get('/dashboard', array(
 		'as' => 'dashboard',
-		'uses' => 'HomeController@getDashboard'
+		'uses' => 'HomeController@getDashboardPage'
 	));
 
 	/*
@@ -29,7 +57,17 @@ Route::group(array('before' => 'auth'), function(){
 		'as' => 'accounts.signout',
 		'uses' => 'AccountsController@getSignOut'
 	));
+
+	/*
+	/ Account Password (GET)
+	*/
+	Route::get('/change-password', array(
+		'as' => 'accounts.change-password',
+		'uses' => 'AccountsController@getChangePassword'
+	));
+
 });
+
 
 /*
 *

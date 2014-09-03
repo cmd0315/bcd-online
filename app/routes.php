@@ -2,8 +2,11 @@
 //Route to home page
 Route::get('/', ['as' => 'home','uses' => 'HomeController@getIndex']);
 
+
+//Routes resources for EmployeesController
 Route::resource('employees', 'EmployeesController');
 
+Route::resource('departments', 'DepartmentsController');
 /*
 *
 * Auuthenticated group
@@ -21,7 +24,7 @@ Route::group(array('before' => 'auth'), function(){
 			'as' => 'accounts.change-password-post',
 			'uses' => 'AccountsController@postChangePassword'
 		));
-
+		
 	});
 
 	/*
@@ -39,6 +42,11 @@ Route::group(array('before' => 'auth'), function(){
 				'as' => 'system-records',
 				'uses' => 'HomeController@getSystemRecordsPage'
 			));
+
+		Route::get('/employees/deactivate', array(
+			'as' => 'modals.getDeactivateEmployee', 
+			'uses' => 'ModalsController@getDeactivateEmployee'
+		));
 		});
 	});
 

@@ -40,4 +40,18 @@ class Employee extends Eloquent implements UserInterface, RemindableInterface {
     	return ucfirst($this->first_name) . ' ' . ucfirst($this->middle_name) . ' ' . ucfirst($this->last_name);
     }
 
+    public function getPositionTitleAttribute() {
+        $position = $this->position;
+
+        if($position == 2) {
+            return 'System Administrator';
+        }
+        else if($position == 1) {
+            return 'Head Employee';
+        }
+        else {
+            return 'Member Employee';
+        }
+    }
+
 }

@@ -23,8 +23,9 @@ class EmployeesController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 	View::make('admin.display.employee', array('pageTitle' => 'Manage Employees'))
-				->with('employees', Employee::withTrashed()->orderBy('last_name')->get());
+		return 	View::make('admin.display-list.employee', array('pageTitle' => 'Manage Employees'))
+				->with('employees', Employee::withTrashed()->orderBy('last_name')->paginate(3))
+				->with('totalEmployees', Employee::withTrashed()->count());
 	}
 
 
@@ -153,7 +154,16 @@ class EmployeesController extends \BaseController {
 	 */
 	public function show($username)
 	{
-		//
+		$employee = Employee::where('username', $username);
+
+		if($employee->count()){
+			$employee = $employee->first();
+			return 	View::make('admin.display-profile.employee', array('pageTitle' => $username))
+					->with('employee', $employee)
+					->with('departments', Department::orderBy('department')->get());
+		}
+
+		return App::abort(400);
 	}
 
 
@@ -261,6 +271,4 @@ class EmployeesController extends \BaseController {
 		return 	Redirect::route('employees.index')
 					->with($global_type, $return_msg);
 	}
-
-
 }

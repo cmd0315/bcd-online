@@ -1,12 +1,13 @@
 @extends('layout.inner.master')
 
 @section('breadcrumb')
+  {{ Breadcrumbs::render('admin-edit-employee') }}
 @stop
 
 @section('content')
 <div class="row mt">
   <div class="col-lg-12">
-    {{ Form::open(array('class' => 'form-horizontal', 'route' => array('employees.update', $username=e($employee->username)), 'method' => 'PUT')) }}
+    {{ Form::open(array('class' => 'form-horizontal', 'route' => array('employees.update', $username=e($employee->username)), 'method' => 'PATCH')) }}
       <div class="row">
         <h4>Account Details</h4>
         <div class="col-lg-6">

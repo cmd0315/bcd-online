@@ -5,13 +5,15 @@
 		@include('layout.partials.page-heading')
 			@yield('content')
 		
-		<div class="row mt2">
-			<div class="col-lg-12">
-				@yield('breadcrumb')
-			</div>
-		</div>
 			</div><!-- .container -->
 		<div id="push"></div>
 
 	</div> <!-- #wrap -->
+	<!-- .modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	  	@yield('modal-content')
+	  </div>
+	</div>
+	<!-- /.modal -->
 @include('layout.partials.footer')

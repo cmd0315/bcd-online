@@ -1,6 +1,15 @@
 	<div id="footer">
 		<footer>
-			<p> BCD Pinpoint Direct Marketing Inc. &copy; 2014 </p>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8" id="breadcrumb-footer-area">
+						@yield('breadcrumb')
+					</div>
+					<div class="col-lg-4" id="footer-text">
+						<p> BCD Pinpoint Direct Marketing Inc. &copy; 2014 </p>
+					</div>
+				</div>
+			</div>
 		</footer>
 	</div> <!-- #footer -->
 

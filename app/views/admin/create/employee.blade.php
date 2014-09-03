@@ -1,6 +1,7 @@
 @extends('layout.inner.master')
 
 @section('breadcrumb')
+  {{ Breadcrumbs::render('create-employee') }}
 @stop
 
 @section('content')

@@ -1,12 +1,21 @@
 <?php
 
 class AccountsController extends \BaseController {
-	/* viewing the signin form */
+
+	/**
+	 * Show the form for signing in.
+	 *
+	 * @return view for the signin form
+	 */
 	public function getSignIn() {
 		return View::make('signin', ['pageTitle' => 'Sign In']);
 	}
 
-	/* submitting the signin form */
+	/**
+	 * Validates inputted login details with corresponding credentials stored in the accounts table
+	 *
+	 * @return dashboard view if successful else return a redirect to the signin form
+	 */
 	public function postSignIn() {
 		$validator = Validator::make(Input::all(),
 			array(
@@ -16,7 +25,7 @@ class AccountsController extends \BaseController {
 		);
 
 		if($validator->fails()) {
-			//Redirect to signin page
+			//Redirect to signin page if there are validation errors 
 			return 	Redirect::route('accounts.signin')
 					->withErrors($validator)
 					->withInput();
@@ -42,7 +51,11 @@ class AccountsController extends \BaseController {
 
 	}
 
-	/* sign out */
+	/**
+	 * End session for authenticated user
+	 *
+	 * @return redirect to home page
+	 */
 	public function getSignOut() {
 		Auth::logout();
 		return Redirect::route('home');

@@ -1,6 +1,7 @@
 @extends('layout.inner.master')
 
 @section('breadcrumb')
+  {{ Breadcrumbs::render('system-records') }}
 @stop
 
 @section('heading')
@@ -17,7 +18,7 @@
   <div class="col-lg-4 dashboard-options">
     {{ HTML::image("img/departments.png", "Department", array('class' => 'thumb')) }}
     <h4>Department</h4>
-    <a href="#">Add</a> | <a href="#">Manage</a>
+    <a href="{{ URL::route('departments.create') }}">Add</a> | <a href="{{ URL::route('departments.index') }}">Manage</a>
   </div>
   <div class="col-lg-4 dashboard-options">
     {{ HTML::image("img/clients.png", "Client", array('class' => 'thumb')) }}

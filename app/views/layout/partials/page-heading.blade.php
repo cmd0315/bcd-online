@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row mt2">
-		<div class="col-lg-12">
+		<div class="col-lg-12" id="breadcrumb-header-area">
 			@yield('breadcrumb')
 		</div>
 	</div>

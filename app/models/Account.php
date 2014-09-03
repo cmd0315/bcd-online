@@ -27,6 +27,7 @@ class Account extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+    /* link acount to employee*/
 	public function employee()
     {
         return $this->hasOne('Employee', 'username', 'username');
@@ -38,6 +39,10 @@ class Account extends Eloquent implements UserInterface, RemindableInterface {
     	echo $account->employee->position;
     }
 
+    /**
+    *
+    * Cascade delete to child classes
+    */
     public static function boot()
     {
         parent::boot();    
@@ -47,5 +52,20 @@ class Account extends Eloquent implements UserInterface, RemindableInterface {
         {
             $account->employee()->delete();
         });
-    }    
+    }
+
+    /**
+    * Convert the format of the date the account was last updated into a readable form
+    * 
+    */
+    public function getLastProfileUpdateAttribute() {
+        $year = date('Y', strtotime($this->updated_at));
+        $month = date('m', strtotime($this->updated_at));
+        $day = date('j', strtotime($this->updated_at));
+        $hr = date('g', strtotime($this->updated_at));
+        $min = date('i', strtotime($this->updated_at));
+        $sec = date('s', strtotime($this->updated_at));
+        return Carbon::create($year, $month, $day, $hr, $min, $sec)->diffForHumans();
+    }
+
 }
